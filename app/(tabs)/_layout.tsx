@@ -8,6 +8,8 @@ const TabStyles = StyleSheet.create({
   tab: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    margin: 0,
+    height: 64,
   },
 });
 
@@ -17,6 +19,15 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: TabStyles.tab,
+        tabBarLabelStyle: {
+          color: "black",
+        },
+        tabBarItemStyle: {
+          alignItems: "center",
+          justifyContent: "center",
+        },
+        tabBarLabelPosition: "below-icon",
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen
@@ -24,10 +35,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+            <TabBarIcon title="Home" name={focused ? "home" : "home-outline"} />
           ),
         }}
       />
@@ -37,8 +45,20 @@ export default function TabLayout() {
           title: "Explore",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
+              title="Explorar"
               name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "Search",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              title="Buscar"
+              name={focused ? "search" : "search-outline"}
             />
           ),
         }}
