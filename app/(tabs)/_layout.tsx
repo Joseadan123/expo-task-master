@@ -63,6 +63,18 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="config"
+        options={{
+          title: "config",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+            title="Configuracion"
+            name={focused ? "settings" : "settings-outline"}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
