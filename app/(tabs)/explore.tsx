@@ -1,9 +1,16 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, Image, Platform, View } from "react-native";
+import { StyleSheet, Image, Platform, View, Text } from "react-native";
 import { ExternalLink } from "@/components/ExternalLink";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabTwoScreen() {
-  return <View></View>;
+  return (
+    <SafeAreaView>
+      <View>
+        <Text>Tu madre</Text>
+      </View>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
