@@ -15,7 +15,7 @@ export default function LoginScreen() {
       if (res.error) {
         return;
       }
-      router.replace("/(tabs)");
+      router.replace("/register_user");
     });
   };
 

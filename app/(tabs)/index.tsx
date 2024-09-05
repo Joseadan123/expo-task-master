@@ -15,8 +15,10 @@ export default function HomeScreen() {
             className="rounded-full"
           />
           <View>
-            <Text className="text-2xl font-bold">Rogelio</Text>
-            <Text className="text-sm">Sistemas</Text>
+            <Text className="text-2xl font-bold">{user?.displayName}</Text>
+            <Text className="text-xs font-bold text-gray-500">
+              {user?.email}
+            </Text>
           </View>
         </View>
       </View>
