@@ -14,9 +14,16 @@ export default async function GoogleSignIn(){
         const googleCredential = GoogleAuthProvider.credential(data?.idToken);
     
         // Inicia sesión con Firebase usando la credencial de Google
+        const {user} = await signInWithCredential(auth,googleCredential)
+        const mappedUser = {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            email: user.email
+        }
         return {
             error:false,
-            result: signInWithCredential(auth,googleCredential)
+            result: mappedUser
         }
     }catch(err){
         return {

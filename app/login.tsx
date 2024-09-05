@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { Ionicons } from "@expo/vector-icons";
 import GoogleSignIn from "@/db/signin";
+import * as SecureStore from "expo-secure-store";
 import { useEffect } from "react";
 
 export default function LoginScreen() {
@@ -12,10 +13,9 @@ export default function LoginScreen() {
   const handleClick = () => {
     GoogleSignIn().then((res) => {
       if (res.error) {
-        console.log(res.err);
-      } else {
-        router.replace("/(tabs)");
+        return;
       }
+      router.replace("/(tabs)");
     });
   };
 
