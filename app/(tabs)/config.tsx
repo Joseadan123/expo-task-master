@@ -18,19 +18,7 @@ import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
 
 export default function TabTwoScreen() {
-  const [image, setImage] = useState("");
   const { user } = useUser();
-  async function selectImage() {
-    const result = await requestMediaLibraryPermissionsAsync();
-    if (result.granted) {
-      const { assets } = await launchImageLibraryAsync({
-        mediaTypes: MediaTypeOptions.Images,
-      });
-      if (assets === null) return;
-
-      setImage(assets[0].uri);
-    }
-  }
   return (
     <View style={styles.container}>
       {/* Aquí podrías agregar otros componentes */}

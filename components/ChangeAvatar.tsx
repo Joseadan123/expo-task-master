@@ -6,8 +6,14 @@ import {
   requestMediaLibraryPermissionsAsync,
 } from "expo-image-picker";
 import { TouchableOpacity, View } from "react-native";
+import { auth, storage } from "@/db/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import useUser from "@/hooks/useUser";
+import { useUserStore } from "@/stores/useUserStore";
 
 export default function ChangeAvatar({ image }: { image: string }) {
+  const user = useUser();
+  const { setUser } = useUserStore();
   async function selectImage() {
     const result = await requestMediaLibraryPermissionsAsync();
     if (result.granted) {
@@ -15,8 +21,21 @@ export default function ChangeAvatar({ image }: { image: string }) {
         mediaTypes: MediaTypeOptions.Images,
       });
       if (assets === null) return;
+      const image = assets[0].uri;
+      const respons = await fetch(image);
+      const blobImage = await respons.blob();
+      const storageRef = ref(storage, `profilePictures/${user.user?.uid}`);
+      const snapshot = await uploadBytes(storageRef, blobImage);
+      // Obtener la URL de la imagen subida
+      const photoURL = await getDownloadURL(snapshot.ref);
+      console.log(photoURL);
+      setUser({
+        ...(user.user as any),
+        photoURL,
+      });
     }
   }
+
   return (
     <TouchableOpacity onPress={selectImage}>
       <Image source={{ uri: image }} className="w-32 h-32 rounded-full"></Image>
