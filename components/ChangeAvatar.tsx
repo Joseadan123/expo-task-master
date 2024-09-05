@@ -28,7 +28,6 @@ export default function ChangeAvatar({ image }: { image: string }) {
       const snapshot = await uploadBytes(storageRef, blobImage);
       // Obtener la URL de la imagen subida
       const photoURL = await getDownloadURL(snapshot.ref);
-      console.log(photoURL);
       setUser({
         ...(user.user as any),
         photoURL,
