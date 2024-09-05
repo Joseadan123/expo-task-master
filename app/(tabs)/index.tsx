@@ -45,26 +45,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
       </View>
-      
-      <Modal
-        transparent={true}
-        visible={isCalendarVisible}
-        onRequestClose={() => setIsCalendarVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Calendar
-              style={styles.calendar}
-            />
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setIsCalendarVisible(false)}
-            >
-              <Text style={styles.closeButtonText}>Cerrar</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 }
