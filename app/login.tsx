@@ -1,10 +1,24 @@
 import { useRouter } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { Ionicons } from "@expo/vector-icons";
+import GoogleSignIn from "@/db/signin";
+import { useEffect } from "react";
 
 export default function LoginScreen() {
   const router = useRouter();
+
+  const handleClick = () => {
+    GoogleSignIn().then((res) => {
+      if (res.error) {
+        console.log(res.err);
+      } else {
+        router.replace("/(tabs)");
+      }
+    });
+  };
+
   return (
     <SafeAreaView>
       <View className="justify-center items-center h-full text-black gap-12">
@@ -15,7 +29,7 @@ export default function LoginScreen() {
           <View className="bg-lime-300 h-48 aspect-square rounded-full absolute -top-24 -left-12" />
           <View className="bg-lime-300 h-20 aspect-square rounded-full absolute -bottom-8 right-2" />
         </View>
-        <TouchableOpacity onPress={() => router.push("/register_user")}>
+        <TouchableOpacity onPress={handleClick}>
           <View className="bg-lime-400 flex-row items-center p-3 rounded-xl gap-2">
             <Ionicons color={"white"} name="logo-google" size={24} />
             <Text className="flex-row rounded-lg text-white">
