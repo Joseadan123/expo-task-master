@@ -10,21 +10,26 @@ export default function HomeScreen() {
   return (
     <SafeAreaView>
       <View className="flex bg-[#E7E7E7] h-full">
-        <View className="p-8 flex-row gap-4">
+        <View className="p-8 flex-row gap-4 items-center">
           <Image
             source={{ uri: user?.photoURL as string }}
             width={60}
             height={60}
             className="rounded-full"
           />
-          <View>
+          <View className="flex-1">
             <Text className="font-juraBold">{user?.displayName}</Text>
             <Text className="text-base text-black font-juraRegular">
               {user?.email}
             </Text>
           </View>
-          <TouchableOpacity>
-            <Ionicons name="notifications" size={50} color="gray" style={styles.iconNotification} />
+          <TouchableOpacity className="bg-white w-14 aspect-square items-center justify-center rounded-full">
+            <Ionicons
+              name="notifications"
+              size={24}
+              color="black"
+              style={styles.iconNotification}
+            />
           </TouchableOpacity>
         </View>
         <View className="flex flex-row px-8 justify-between gap-4">
@@ -38,9 +43,25 @@ export default function HomeScreen() {
             <Ionicons name="apps" size={20} color="white" />
           </TouchableOpacity>
         </View>
-        <Text className="px-7 pt-8" style={fonts.title}>
+        <Text className="px-7 pt-8 mb-14" style={fonts.title}>
           Revisa lo que tienes que hacer hoy
         </Text>
+        <View className="bg-black mx-7 p-4 border-white border rounded-[23px] ">
+          <Text style={fonts.titleCard} className="text-white">
+            Reunion con clientes
+          </Text>
+          <Text className="text-white mt-8 " style={fonts.descriptionCard}>
+            Afinar detalles sobre lo que se tiene que lograr
+          </Text>
+          <View className="flex-row items-center">
+            <TouchableOpacity className="bg-lime-300 w-fit rounded-full mt-5 px-4 py-2">
+              <Text className="text-black" style={fonts.buttonCard}>
+                Ventas
+              </Text>
+            </TouchableOpacity>
+            <Text className="text-white">Miercoles 28 Julio</Text>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
