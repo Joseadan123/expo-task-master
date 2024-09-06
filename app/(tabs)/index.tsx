@@ -1,7 +1,7 @@
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
 import { Ionicons } from "@expo/vector-icons";
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
