@@ -27,13 +27,12 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    console.log("Font loaded", loaded);
     if (loaded && !loading) {
       SplashScreen.hideAsync();
-      if (!user) router.replace("/login");
+      if (!user) return router.replace("/login");
       router.replace("/(tabs)");
     }
-  }, [loaded, loading]);
+  }, [loaded, loading, user]);
 
   if (!loaded) {
     return null;

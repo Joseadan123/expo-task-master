@@ -23,11 +23,12 @@ export default function useUser(){
                     email: user.email
                 }
                 setUser(mappedUser)
+                setLoading(false)
             } else {
                 logout()
+                setLoading(false)
             }
         });
-        setLoading(false)
         return unsubscribe
     },[])
 
