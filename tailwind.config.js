@@ -4,7 +4,15 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}","./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        juraRegular: ['Jura Regular'],
+        juraBold: ['Jura Bold'],
+        juraMedium: ['Jura Medium'],
+        juraSemiBold: ['Jura SemiBold'],
+        juraLight: ['Jura Light']
+      }
+    },
   },
   plugins: [],
 }
