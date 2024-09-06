@@ -1,5 +1,6 @@
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
+import { fonts } from "@/styles/font";
 import { Ionicons } from "@expo/vector-icons";
 import { Image, Text, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,7 +18,7 @@ export default function HomeScreen() {
             className="rounded-full"
           />
           <View>
-            <Text className="text-xl font-juraBold">{user?.displayName}</Text>
+            <Text className="font-juraBold">{user?.displayName}</Text>
             <Text className="text-base text-black font-juraRegular">
               {user?.email}
             </Text>
@@ -34,7 +35,7 @@ export default function HomeScreen() {
             <Ionicons name="apps" size={20} color="white" />
           </TouchableOpacity>
         </View>
-        <Text className="font-juraBold px-7 text-4xl pt-8">
+        <Text className="px-7 pt-8" style={fonts.title}>
           Revisa lo que tienes que hacer hoy
         </Text>
       </View>
