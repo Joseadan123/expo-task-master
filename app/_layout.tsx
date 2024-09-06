@@ -19,16 +19,20 @@ export default function RootLayout() {
   const { user, loading } = useUser();
 
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Jura Regular": require("@/assets/fonts/Jura-Regular.ttf"),
+    "Jura Bold": require("@/assets/fonts/Jura-Bold.ttf"),
+    "Jura Light": require("@/assets/fonts/Jura-Light.ttf"),
+    "Jura Medium": require("@/assets/fonts/Jura-Medium.ttf"),
+    "Jura SemiBold": require("@/assets/fonts/Jura-SemiBold.ttf"),
   });
 
   useEffect(() => {
     if (loaded && !loading) {
       SplashScreen.hideAsync();
-      if (!user) router.replace("/login");
+      if (!user) return router.replace("/login");
       router.replace("/(tabs)");
     }
-  }, [loaded, loading]);
+  }, [loaded, loading, user]);
 
   if (!loaded) {
     return null;

@@ -1,7 +1,10 @@
-import { auth } from "@/db/firebase";
+import { auth, storage } from "@/db/firebase";
 import { useUserStore } from "@/stores/useUserStore"
 import { onAuthStateChanged } from "firebase/auth";
+import { getDownloadURL } from "firebase/storage"
+import { ref } from "firebase/storage";
 import { useEffect, useState } from "react"
+import * as SecureStore from "expo-secure-store";
 
 export default function useUser(){
     const {logout,setUser,user} = useUserStore()
@@ -10,18 +13,21 @@ export default function useUser(){
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
+                const profileImageRef = ref(storage, `profilePictures/${user.uid}`)
+                const url = await getDownloadURL(profileImageRef).catch(() => null)
+                
                 const mappedUser = {
                     uid: user.uid,
                     displayName: user.displayName,
-                    photoURL: user.photoURL,
+                    photoURL: url ?? user.photoURL,
                     email: user.email
                 }
                 setUser(mappedUser)
+                setLoading(false)
             } else {
                 logout()
+                setLoading(false)
             }
-            console.log("Entro")
-            setLoading(false)
         });
         return unsubscribe
     },[])

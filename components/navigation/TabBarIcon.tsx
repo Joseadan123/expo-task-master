@@ -13,7 +13,7 @@ export function TabBarIcon({ title, style, ...rest }: TabBarIconProps) {
   return (
     <View className="items-center">
       <Ionicons size={28} {...rest} className="text-black" />
-      <Text className="text-sm">{title}</Text>
+      <Text className="text-xs font-juraMedium">{title}</Text>
     </View>
   );
 }

@@ -10,6 +10,7 @@ import { auth, storage } from "@/db/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import useUser from "@/hooks/useUser";
 import { useUserStore } from "@/stores/useUserStore";
+import * as SecureStore from "expo-secure-store";
 
 export default function ChangeAvatar({ image }: { image: string }) {
   const user = useUser();
@@ -32,6 +33,11 @@ export default function ChangeAvatar({ image }: { image: string }) {
         ...(user.user as any),
         photoURL,
       });
+      SecureStore.setItemAsync(
+        "user",
+        JSON.stringify({ ...(user.user as any) })
+      );
+      SecureStore.setItemAsync("photoURL", photoURL);
     }
   }
 
