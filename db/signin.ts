@@ -5,7 +5,8 @@ import { GoogleSignin } from "@react-native-google-signin/google-signin";
 export default async function GoogleSignIn(){
     try{
         GoogleSignin.configure({
-            webClientId:  "531247001592-va40brea3h1i6keui65ocpp3k4vlt9t4.apps.googleusercontent.com"
+            webClientId:  "531247001592-va40brea3h1i6keui65ocpp3k4vlt9t4.apps.googleusercontent.com",
+            offlineAccess: true,
           });
         await GoogleSignin.hasPlayServices();
         const { data } = await GoogleSignin.signIn();

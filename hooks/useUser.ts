@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { getDownloadURL } from "firebase/storage"
 import { ref } from "firebase/storage";
 import { useEffect, useState } from "react"
+import * as SecureStore from "expo-secure-store";
 
 export default function useUser(){
     const {logout,setUser,user} = useUserStore()
@@ -25,8 +26,8 @@ export default function useUser(){
             } else {
                 logout()
             }
-            setLoading(false)
         });
+        setLoading(false)
         return unsubscribe
     },[])
 
