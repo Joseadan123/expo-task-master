@@ -46,73 +46,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#E7E7E7",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#E7E7E7",
-  },
-  header: {
-    flexDirection: "row",
-    padding: 16,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  userInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-  },
-  avatar: {
-    width: 64,
-    height: 64,
-    backgroundColor: "gray",
-    borderRadius: 32,
-  },
-  userName: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  userRole: {
-    fontSize: 14,
-    color: "#666",
-  },
   iconNotification: {
     marginRight: 0,
-  },
-  iconCalendarContainer: {
-    alignItems: "center",    
-  },
-  iconCalendar: {
-    marginTop: 16,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  modalContent: {
-    width: 350,
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 16,
-    alignItems: "center",
-  },
-  calendar: {
-    width: 320,
-    height: 350,
-  },
-  closeButton: {
-    marginTop: 16,
-    backgroundColor: "#007BFF",
-    borderRadius: 5,
-    padding: 10,
-  },
-  closeButtonText: {
-    color: "white",
-    fontSize: 16,
   },
 });
