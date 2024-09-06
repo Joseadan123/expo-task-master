@@ -1,7 +1,7 @@
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
 import { Ionicons } from "@expo/vector-icons";
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
@@ -22,6 +22,9 @@ export default function HomeScreen() {
               {user?.email}
             </Text>
           </View>
+          <TouchableOpacity>
+            <Ionicons name="notifications" size={50} color="gray" style={styles.iconNotification} />
+          </TouchableOpacity>
         </View>
         <View className="flex flex-row px-8 justify-between gap-4">
           <TouchableOpacity className="bg-black px-7 py-3 rounded-full shadow-xl shadow-black">
@@ -41,3 +44,9 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  iconNotification: {
+    marginRight: 0,
+  },
+});
