@@ -1,4 +1,5 @@
 import ChangeAvatar from "@/components/ChangeAvatar";
+import useFontSize from "@/hooks/useFontSize";
 import useUser from "@/hooks/useUser";
 import { fonts } from "@/styles/font";
 import { Ionicons } from "@expo/vector-icons";
@@ -53,13 +54,18 @@ export default function HomeScreen() {
           <Text className="text-white mt-8 " style={fonts.descriptionCard}>
             Afinar detalles sobre lo que se tiene que lograr
           </Text>
-          <View className="flex-row items-center">
-            <TouchableOpacity className="bg-lime-300 w-fit rounded-full mt-5 px-4 py-2">
+          <View className="flex-row h-fit mt-5 items-center gap-4">
+            <TouchableOpacity className="bg-lime-300 w-fit rounded-full px-4 py-2">
               <Text className="text-black" style={fonts.buttonCard}>
                 Ventas
               </Text>
             </TouchableOpacity>
-            <Text className="text-white">Miercoles 28 Julio</Text>
+            <Text
+              className="text-white font-juraMedium"
+              style={{ fontSize: useFontSize(12) }}
+            >
+              Miercoles 28 Julio
+            </Text>
           </View>
         </View>
       </View>
