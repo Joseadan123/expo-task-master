@@ -1,56 +1,26 @@
-import { StyleSheet, Image, Platform, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { fonts } from "@/styles/font";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import useFontSize from "@/hooks/useFontSize";
+import useTeam from "@/hooks/useTeam";
+import PageWithOutTeam from "@/components/PageWithOutTeam";
 
-export default function TabTwoScreen() {
+export default function TeamScreen() {
+  const { team, loading } = useTeam();
+  if (loading && !team) return <Text>Loading...</Text>;
+  if (!team) return <PageWithOutTeam />;
   return (
     <SafeAreaView>
-      <View className="items-center justify-center h-full gap-16 p-1">
+      <View className="bg-black px-8 py-4 rounded-b-lg">
         <Text
-          className="font-juraSemiBold text-center uppercase"
-          style={fonts.title}
+          className="text-white font-juraSemiBold"
+          style={{ fontSize: useFontSize(32) }}
         >
-          ¿Aun no tienes un equipo?
+          {team.title}
         </Text>
-        <View className="items-center gap-4">
-          <TouchableOpacity>
-            <View className="bg-lime-300 px-6 py-4 rounded-full">
-              <Text
-                className="font-juraBold"
-                style={{ fontSize: useFontSize(16) }}
-              >
-                Crea uno
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <Text className="font-juraMedium">O</Text>
-          <TouchableOpacity>
-            <View className="bg-black px-6 py-4 rounded-full">
-              <Text
-                className="text-white font-juraBold"
-                style={{ fontSize: useFontSize(16) }}
-              >
-                Unete a uno
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <Text className="text-white font-juraMedium">
+          {team.createdBy.displayName}
+        </Text>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
-  },
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
-  },
-});

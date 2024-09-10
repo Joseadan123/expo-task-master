@@ -12,6 +12,7 @@ import useUser from "@/hooks/useUser";
 import { useUserStore } from "@/stores/useUserStore";
 import * as SecureStore from "expo-secure-store";
 import { updateCurrentUser, User } from "firebase/auth";
+import { saveUser } from "@/db/users";
 
 export default function ChangeAvatar({ image }: { image: string }) {
   const { user } = useUser();
@@ -31,6 +32,8 @@ export default function ChangeAvatar({ image }: { image: string }) {
       // Obtener la URL de la imagen subida
       const photoURL = await getDownloadURL(snapshot.ref);
       setUser({ ...(user as User), photoURL });
+      const { err, message } = await saveUser({ ...(user as User), photoURL });
+      console.log(err, message);
     }
   }
 

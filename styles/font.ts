@@ -17,6 +17,9 @@ export const fonts = StyleSheet.create({
     buttonCard:{
         fontFamily: "Jura Bold",
         fontSize: useFontSize(10)
+    },
+    topBarText:{
+        fontFamily: "Jura Bold",
+        fontSize: useFontSize(22)
     }
-
 })

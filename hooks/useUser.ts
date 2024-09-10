@@ -11,6 +11,7 @@ export default function useUser(){
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
+        if(user) return
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const profileImageRef = ref(storage, `profilePictures/${user.uid}`)
