@@ -47,7 +47,7 @@ export default function HomeScreen() {
         <Text className="px-7 pt-8 mb-14" style={fonts.title}>
           Revisa lo que tienes que hacer hoy
         </Text>
-        <View className="bg-black mx-7 p-4 border-white border rounded-[23px] ">
+        <View className="bg-black mx-7 p-4 border-white border rounded-[23px] shadow-2xl shadow-black ">
           <Text style={fonts.titleCard} className="text-white">
             Reunion con clientes
           </Text>

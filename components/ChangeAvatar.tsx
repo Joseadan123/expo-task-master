@@ -11,9 +11,10 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import useUser from "@/hooks/useUser";
 import { useUserStore } from "@/stores/useUserStore";
 import * as SecureStore from "expo-secure-store";
+import { updateCurrentUser, User } from "firebase/auth";
 
 export default function ChangeAvatar({ image }: { image: string }) {
-  const user = useUser();
+  const { user } = useUser();
   const { setUser } = useUserStore();
   async function selectImage() {
     const result = await requestMediaLibraryPermissionsAsync();
@@ -25,19 +26,11 @@ export default function ChangeAvatar({ image }: { image: string }) {
       const image = assets[0].uri;
       const respons = await fetch(image);
       const blobImage = await respons.blob();
-      const storageRef = ref(storage, `profilePictures/${user.user?.uid}`);
+      const storageRef = ref(storage, `profilePictures/${user?.uid}`);
       const snapshot = await uploadBytes(storageRef, blobImage);
       // Obtener la URL de la imagen subida
       const photoURL = await getDownloadURL(snapshot.ref);
-      setUser({
-        ...(user.user as any),
-        photoURL,
-      });
-      SecureStore.setItemAsync(
-        "user",
-        JSON.stringify({ ...(user.user as any) })
-      );
-      SecureStore.setItemAsync("photoURL", photoURL);
+      setUser({ ...(user as User), photoURL });
     }
   }
 

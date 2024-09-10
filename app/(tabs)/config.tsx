@@ -1,21 +1,8 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import {
-  requestMediaLibraryPermissionsAsync,
-  launchImageLibraryAsync,
-  MediaTypeOptions,
-} from "expo-image-picker";
-import {
-  StyleSheet,
-  Platform,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import { ExternalLink } from "@/components/ExternalLink";
-import { useState } from "react";
-import { Image } from "expo-image";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
+import { signOut } from "firebase/auth";
 
 export default function TabTwoScreen() {
   const { user } = useUser();
@@ -34,6 +21,9 @@ export default function TabTwoScreen() {
         <ChangeAvatar image={user?.photoURL as string} />
         <Text style={styles.nameUser}>Rogelio</Text>
       </View>
+      <TouchableOpacity onPress={() => signOut}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 }

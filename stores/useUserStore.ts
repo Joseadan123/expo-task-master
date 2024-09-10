@@ -1,11 +1,5 @@
+import { User } from "firebase/auth";
 import { create } from "zustand";
-
-type User = {
-    displayName: string | null;
-    email: string | null;
-    photoURL: string | null;
-    uid: string | null;
-};
 
 type UserStore = {
     user: User | null;

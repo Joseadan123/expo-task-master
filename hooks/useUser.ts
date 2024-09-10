@@ -15,14 +15,7 @@ export default function useUser(){
             if (user) {
                 const profileImageRef = ref(storage, `profilePictures/${user.uid}`)
                 const url = await getDownloadURL(profileImageRef).catch(() => null)
-                
-                const mappedUser = {
-                    uid: user.uid,
-                    displayName: user.displayName,
-                    photoURL: url ?? user.photoURL,
-                    email: user.email
-                }
-                setUser(mappedUser)
+                setUser({...user,photoURL:url})
                 setLoading(false)
             } else {
                 logout()

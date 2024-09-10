@@ -1,6 +1,4 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, Image, Platform, View, Text } from "react-native";
-import { ExternalLink } from "@/components/ExternalLink";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { fonts } from "@/styles/font";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -9,8 +7,11 @@ import useFontSize from "@/hooks/useFontSize";
 export default function TabTwoScreen() {
   return (
     <SafeAreaView>
-      <View className="items-center justify-center h-full gap-16">
-        <Text className="font-juraSemiBold text-center" style={fonts.title}>
+      <View className="items-center justify-center h-full gap-16 p-1">
+        <Text
+          className="font-juraSemiBold text-center uppercase"
+          style={fonts.title}
+        >
           ¿Aun no tienes un equipo?
         </Text>
         <View className="items-center gap-4">
