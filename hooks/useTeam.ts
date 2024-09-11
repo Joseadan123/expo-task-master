@@ -21,6 +21,12 @@ export default function useTeam(){
     return {
         team,
         setTeam,
-        loading
+        loading,
+        getTeamInfo: async () => {
+            getTeamUser(user?.uid as string).then((teams) => {
+                console.log(team)
+                if(teams.length > 0) setTeam(teams[0])
+            }).finally(() => setLoading(false))
+        }
     }
 }

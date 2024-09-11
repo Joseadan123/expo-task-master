@@ -28,7 +28,7 @@ export default function PageWithOutTeam() {
             </View>
           </TouchableOpacity>
           <Text className="font-juraMedium">O</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/(team)/join")}>
             <View className="bg-black px-6 py-4 rounded-full">
               <Text
                 className="text-white font-juraBold"

@@ -8,7 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function LayoutTeam() {
   const router = useRouter();
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView>
       <View className="px-4 py-6 bg-white flex-row items-center gap-4">
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={28} />

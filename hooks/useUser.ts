@@ -4,11 +4,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { getDownloadURL } from "firebase/storage"
 import { ref } from "firebase/storage";
 import { useEffect, useState } from "react"
-import * as SecureStore from "expo-secure-store";
+import { useRouter } from "expo-router";
 
 export default function useUser(){
     const {logout,setUser,user} = useUserStore()
     const [loading, setLoading] = useState(true)
+    const router = useRouter()
 
     useEffect(()=>{
         if(user) return
@@ -24,7 +25,7 @@ export default function useUser(){
             }
         });
         return unsubscribe
-    },[])
+    },[user])
 
     return {
         user,

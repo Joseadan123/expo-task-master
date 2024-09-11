@@ -1,8 +1,9 @@
 import { db } from "./firebase";
-import {getDoc,getDocs,doc,addDoc, collection} from "firebase/firestore"
+import {getDoc,getDocs,doc,addDoc, collection, updateDoc, AddPrefixToKeys} from "firebase/firestore"
 import { getUserById, MappedUser } from "./users";
 
 export interface Team{
+    code:string;
     title:string;
     createdBy: string;
     partners: string[];
@@ -46,4 +47,26 @@ export const getTeamUser = async (uid:string) : Promise<TeamWithUsers[]> => {
         }
     }))
     return teams
+}
+
+export const joinTeam = async (uid:string,teamId:string) => {
+    const teams = await getDocs(docReference)
+
+    
+    const team = teams.docs.find((doc) => {
+        const t = doc.data() as Team
+        return t.code === teamId
+    })
+
+    if(!team?.exists()){
+        return {err:true,message:"El equipo no existe."}
+    }
+    const data = team.data() as Team
+    if(data.partners.includes(uid)){
+        return {err:true,message:"Ya eres parte de este equipo."}
+    }
+    data.partners.push(uid)
+    const teamDoc = doc(docReference,team.id)
+    updateDoc(teamDoc,data as unknown as AddPrefixToKeys<string, any>)
+    return {err:false,message:"Te has unido al equipo."}
 }

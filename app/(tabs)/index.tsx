@@ -1,3 +1,4 @@
+import Avatar from "@/components/Avatar";
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useFontSize from "@/hooks/useFontSize";
 import useUser from "@/hooks/useUser";
@@ -12,12 +13,7 @@ export default function HomeScreen() {
     <SafeAreaView>
       <View className="flex bg-[#E7E7E7] h-full">
         <View className="p-8 flex-row gap-4 items-center">
-          <Image
-            source={{ uri: user?.photoURL as string }}
-            width={60}
-            height={60}
-            className="rounded-full"
-          />
+          <Avatar size={60} url={user?.photoURL as string} />
           <View className="flex-1">
             <Text className="font-juraBold">{user?.displayName}</Text>
             <Text className="text-base text-black font-juraRegular">

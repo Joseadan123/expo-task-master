@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useUser from "@/hooks/useUser";
 import { signOut } from "firebase/auth";
+import { auth } from "@/db/firebase";
 
 export default function TabTwoScreen() {
   const { user } = useUser();
@@ -21,7 +22,7 @@ export default function TabTwoScreen() {
         <ChangeAvatar image={user?.photoURL as string} />
         <Text style={styles.nameUser}>Rogelio</Text>
       </View>
-      <TouchableOpacity onPress={() => signOut}>
+      <TouchableOpacity onPress={() => signOut(auth)}>
         <Text>Logout</Text>
       </TouchableOpacity>
     </View>
