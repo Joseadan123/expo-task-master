@@ -6,7 +6,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/db/firebase";
 
 export default function TabTwoScreen() {
-  const { user } = useUser();
+  const { user, logout } = useUser();
   return (
     <View style={styles.container}>
       {/* Aquí podrías agregar otros componentes */}
@@ -22,7 +22,12 @@ export default function TabTwoScreen() {
         <ChangeAvatar image={user?.photoURL as string} />
         <Text style={styles.nameUser}>Rogelio</Text>
       </View>
-      <TouchableOpacity onPress={() => signOut(auth)}>
+      <TouchableOpacity
+        onPress={() => {
+          signOut(auth);
+          logout();
+        }}
+      >
         <Text>Logout</Text>
       </TouchableOpacity>
     </View>

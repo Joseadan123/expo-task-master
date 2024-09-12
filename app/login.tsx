@@ -15,7 +15,6 @@ export default function LoginScreen() {
       if (res.error) {
         return;
       }
-      const user = res.result;
       router.replace("/register_user");
     });
   };

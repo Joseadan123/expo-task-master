@@ -13,11 +13,11 @@ export default function useUser(){
 
     useEffect(()=>{
         if(user) return
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const profileImageRef = ref(storage, `profilePictures/${user.uid}`)
+        const unsubscribe = onAuthStateChanged(auth, async (u) => {
+            if (u) {
+                const profileImageRef = ref(storage, `profilePictures/${u.uid}`)
                 const url = await getDownloadURL(profileImageRef).catch(() => null)
-                setUser({...user,photoURL:url})
+                setUser({...u,photoURL:url})
                 setLoading(false)
             } else {
                 logout()
@@ -29,6 +29,7 @@ export default function useUser(){
 
     return {
         user,
-        loading
+        loading,
+        logout
     }
 }
