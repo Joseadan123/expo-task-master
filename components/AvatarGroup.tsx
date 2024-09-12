@@ -4,18 +4,24 @@ import { MappedUser } from "@/db/users";
 
 export default function AvatarGroup({
   participants,
+  size = 28,
 }: {
   participants: MappedUser[];
+  size?: number;
 }) {
   return (
-    <View>
-      {participants.map((participant) => (
-        <Avatar
-          key={participant.uid}
-          size={28}
-          url={participant.photoUrl as string}
-        ></Avatar>
-      ))}
+    <View className="items-center justify-center flex-row">
+      {participants.map((participant, i) => {
+        const isLast = i === participants.length - 1;
+        return (
+          <Avatar
+            key={participant.uid}
+            size={size}
+            url={participant.photoUrl as string}
+            className={`${isLast ? "" : "-mr-5"}`}
+          ></Avatar>
+        );
+      })}
     </View>
   );
 }

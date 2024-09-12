@@ -1,14 +1,18 @@
 import Avatar from "@/components/Avatar";
+import AvatarGroup from "@/components/AvatarGroup";
+import CategoryTag from "@/components/Category";
 import ChangeAvatar from "@/components/ChangeAvatar";
 import useFontSize from "@/hooks/useFontSize";
 import useUser from "@/hooks/useUser";
 import { fonts } from "@/styles/font";
 import { Ionicons } from "@expo/vector-icons";
+import { Link, useRouter } from "expo-router";
 import { Image, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const { user } = useUser();
+  const router = useRouter();
   return (
     <SafeAreaView>
       <View className="flex bg-[#E7E7E7] h-full">
@@ -43,25 +47,32 @@ export default function HomeScreen() {
         <Text className="px-7 pt-8 mb-14" style={fonts.title}>
           Revisa lo que tienes que hacer hoy
         </Text>
-        <View className="bg-black mx-7 p-4 border-white border rounded-[23px] shadow-2xl shadow-black ">
+        <View className="relative bg-black mx-7 p-4 border-white border rounded-[23px] shadow-2xl shadow-black ">
           <Text style={fonts.titleCard} className="text-white">
             Reunion con clientes
           </Text>
+          <View className="absolute right-2 top-2">
+            <TouchableOpacity>
+              <Link
+                href={{
+                  pathname: "/(chat)/[todoid]",
+                  params: { todoid: "1" },
+                }}
+              >
+                <Ionicons
+                  className="text-white"
+                  size={42}
+                  color="white"
+                  name="arrow-redo-circle"
+                />
+              </Link>
+            </TouchableOpacity>
+          </View>
           <Text className="text-white mt-8 " style={fonts.descriptionCard}>
             Afinar detalles sobre lo que se tiene que lograr
           </Text>
-          <View className="flex-row h-fit mt-5 items-center gap-4">
-            <TouchableOpacity className="bg-lime-300 w-fit rounded-full px-4 py-2">
-              <Text className="text-black" style={fonts.buttonCard}>
-                Ventas
-              </Text>
-            </TouchableOpacity>
-            <Text
-              className="text-white font-juraMedium"
-              style={{ fontSize: useFontSize(12) }}
-            >
-              Miercoles 28 Julio
-            </Text>
+          <View className="flex-row">
+            <CategoryTag />
           </View>
         </View>
       </View>

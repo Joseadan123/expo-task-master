@@ -25,7 +25,7 @@ export default function useUser(){
             }
         });
         return unsubscribe
-    },[user])
+    },[])
 
     return {
         user,

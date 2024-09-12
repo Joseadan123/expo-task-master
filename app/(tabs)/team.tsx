@@ -38,10 +38,10 @@ export default function TeamScreen() {
             Creado por {team.createdBy.displayName}
           </Text>
           <View className="flex-row gap-3 mt-3 items-center">
-            <AvatarGroup participants={team.partners} />
             <Text className="text-white font-juraMedium">
               {team.partners.length} miembros
             </Text>
+            <AvatarGroup participants={team.partners} />
           </View>
         </View>
       </ScrollView>

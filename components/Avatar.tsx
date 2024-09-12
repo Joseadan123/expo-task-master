@@ -12,7 +12,7 @@ export default function Avatar(props: AvatarProps) {
       source={{ uri: url }}
       width={size}
       height={size}
-      className={`rounded-full ${className}`}
+      className={`rounded-full ${className} border border-white`}
     />
   );
 }
