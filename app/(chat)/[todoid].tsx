@@ -1,16 +1,60 @@
 import AvatarGroup from "@/components/AvatarGroup";
 import CategoryTag from "@/components/Category";
+import Message, { IMessage } from "@/components/Message";
+import { db } from "@/db/firebase";
+import { createMessage, MessageProps } from "@/db/messages";
 import useFontSize from "@/hooks/useFontSize";
+import useUser from "@/hooks/useUser";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { User } from "firebase/auth";
+import {
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Alert, ScrollView, Text, TextInput, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ChatToDo() {
-  const local = useLocalSearchParams();
+  const { todoid } = useLocalSearchParams();
+  const { user } = useUser();
+  const [content, setContent] = useState("");
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const router = useRouter();
+
+  useEffect(() => {
+    const getMessages = async () => {
+      const col = collection(db, "todo", todoid as string, "messages");
+      onSnapshot(col, (d) => {
+        const messages = d.docs.sort().map((doc) => {
+          const data = doc.data() as IMessage;
+          return data;
+        });
+        setMessages(
+          messages.sort((a, b) => (a.created_at <= b.created_at ? 0 : 1))
+        );
+      });
+    };
+
+    getMessages();
+  }, []);
+
+  const handleCreate = async () => {
+    if (!content) return;
+    await createMessage({
+      content,
+      created_by: user as User,
+      todoid: todoid as string,
+    });
+    setContent("");
+  };
+
   return (
-    <View className="p-4 gap-3">
+    <View className="p-4 gap-3 h-full">
       <View className="flex-row items-center gap-8">
         <TouchableOpacity onPress={() => router.back()}>
           <View className="shadow-2xl shadow-black bg-white w-fit h-fit p-4 rounded-full">
@@ -55,9 +99,40 @@ export default function ChatToDo() {
                 photoUrl:
                   "https://images.pexels.com/photos/3754208/pexels-photo-3754208.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
               },
+              {
+                displayName: "",
+                email: "",
+                uid: "2",
+                photoUrl:
+                  "https://images.pexels.com/photos/3754208/pexels-photo-3754208.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+              },
             ]}
           />
         </View>
+      </View>
+      <ScrollView className="flex-grow">
+        {messages.length
+          ? messages.map((message) => (
+              <Message
+                message={message}
+                key={`${message.created_by} ${message.content}`}
+              />
+            ))
+          : null}
+      </ScrollView>
+      <View className="relative flex-row gap-4 items-end">
+        <TextInput
+          placeholder="Mensaje..."
+          multiline
+          value={content}
+          onChangeText={setContent}
+          className="flex-1 bg-white shadow-2xl shadow-black px-5 py-2 rounded-md max-h-20"
+        ></TextInput>
+        <TouchableOpacity onPress={handleCreate} disabled={!content}>
+          <View className="bg-lime-400 p-3 rounded-full shadow-2xl shadow-black">
+            <Ionicons name="send" size={18} color={"white"}></Ionicons>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
