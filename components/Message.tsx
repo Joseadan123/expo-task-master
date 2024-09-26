@@ -14,13 +14,19 @@ export interface IMessage extends Omit<MessageProps, "created_by"> {
 export default function Message({ message }: { message: IMessage }) {
   const [user, setUser] = useState<MappedUser>();
   const [isUserMessage, setIsUserMessage] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getUserById(message.created_by).then((user) => {
-      setUser(user);
-      setIsUserMessage(user?.uid === message.created_by);
-    });
+    setLoading(true);
+    getUserById(message.created_by)
+      .then((user) => {
+        setUser(user);
+        setIsUserMessage(user?.uid === message.created_by);
+      })
+      .finally(() => setLoading(true));
   }, []);
+
+  if (loading) return <View className="bg-white rounded "></View>;
 
   return (
     <View
