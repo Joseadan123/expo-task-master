@@ -23,10 +23,10 @@ export default function Message({ message }: { message: IMessage }) {
         setUser(user);
         setIsUserMessage(user?.uid === message.created_by);
       })
-      .finally(() => setLoading(true));
+      .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <View className="bg-white rounded "></View>;
+  if (loading) return null;
 
   return (
     <View
