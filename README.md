@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# Mobile App Development Project
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the repository for my mobile application project! 🚀 This app is being developed as part of a university assignment, with the goal of building a fully functional cross-platform mobile application using **React Native** and **Firebase**.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Cross-platform compatibility**: The app works seamlessly on both **Android** and **iOS** devices, ensuring a smooth user experience across different platforms.
+- **User Authentication**: Powered by **Firebase Authentication**, the app allows users to sign up, log in, and manage their profiles securely.
+- **Real-time Database**: The integration with **Firebase Firestore** enables real-time data updates, allowing for dynamic interactions within the app.
+- **Responsive UI**: Developed with **React Native**, the app features a clean, user-friendly interface that adapts to different screen sizes and resolutions.
+- **Scalability**: The app’s architecture is designed to support future features and scale efficiently.
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- **Frontend**: [React Native](https://reactnative.dev/) – A JavaScript framework for building native apps for iOS and Android.
+- **Backend**: [Firebase Firestore](https://firebase.google.com/docs/firestore) – A flexible, scalable database for mobile, web, and server development.
+- **Authentication**: [Firebase Authentication](https://firebase.google.com/docs/auth) – A secure and customizable authentication solution.
+- **Platform Support**: Android and iOS.
 
-   ```bash
-    npx expo start
-   ```
+## Project Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+/my-mobile-app
+│
+├── /src
+│   ├── /components       # Reusable UI components
+│   ├── /screens          # Different screens (Home, Login, Profile, etc.)
+│   ├── /services         # Firebase services and API integrations
+│   ├── App.js            # Main entry point of the application
+│
+├── /assets               # Image and media files
+├── firebase.json         # Firebase configuration file
+├── package.json          # Node.js dependencies
+└── README.md             # Project documentation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-## Learn more
+To run this project locally, follow these steps:
 
-To learn more about developing your project with Expo, look at the following resources:
+### Prerequisites
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Node.js and npm installed on your machine
+- Android Studio and/or Xcode for running Android/iOS emulators
+- Firebase account for database and authentication setup
 
-## Join the community
 
-Join our community of developers creating universal apps.
+## Contributing
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with your changes. I'm open to suggestions, feature requests, and improvements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
