@@ -4,8 +4,13 @@ import useFontSize from "@/hooks/useFontSize";
 import useTeam from "@/hooks/useTeam";
 import PageWithOutTeam from "@/components/PageWithOutTeam";
 import AvatarGroup from "@/components/AvatarGroup";
-import { RefreshControl, ScrollView } from "react-native-gesture-handler";
+import {
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 import { useState } from "react";
+import { router } from "expo-router";
 
 export default function TeamScreen() {
   const { team, loading, getTeamInfo } = useTeam();
@@ -44,6 +49,27 @@ export default function TeamScreen() {
             <AvatarGroup participants={team.partners} />
           </View>
         </View>
+        <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: "/(task)/(create)/[teamid]",
+              params: {
+                teamid: team.code,
+              },
+            })
+          }
+        >
+          <View className="p-4 items-center bg-lime-300 m-4 rounded-lg">
+            <Text
+              className="font-juraBold"
+              style={{
+                fontSize: useFontSize(16),
+              }}
+            >
+              Crear tarea
+            </Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

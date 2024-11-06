@@ -18,6 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import { Alert, ScrollView, Text, TextInput, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native";
 
 export default function ChatToDo() {
   const { todoid } = useLocalSearchParams();
@@ -30,13 +31,15 @@ export default function ChatToDo() {
     const getMessages = async () => {
       const col = collection(db, "todo", todoid as string, "messages");
       onSnapshot(col, (d) => {
-        const messages = d.docs.sort().map((doc) => {
-          const data = doc.data() as IMessage;
-          return data;
-        });
-        setMessages(
-          messages.sort((a, b) => (a.created_at <= b.created_at ? 0 : 1))
-        );
+        const messages = d.docs
+          .sort((a, b) => {
+            return a.data().created_at - b.data().created_at;
+          })
+          .map((doc) => {
+            const data = doc.data() as IMessage;
+            return data;
+          });
+        setMessages(messages);
       });
     };
 
@@ -78,7 +81,7 @@ export default function ChatToDo() {
           className="font-juraRegular text-slate-500"
           style={{ fontSize: useFontSize(15) }}
         >
-          Afinar detalles sobre lo que se tiene que lograr
+          zs vc Afinar detalles sobre lo que se tiene que lograr
         </Text>
         <View className="flex-row items-center justify-between mt-5">
           <CategoryTag color="black" />
@@ -115,7 +118,7 @@ export default function ChatToDo() {
           ? messages.map((message) => (
               <Message
                 message={message}
-                key={`${message.created_by} ${message.content}`}
+                key={`${message.created_by}-${message.content}-${message.created_at}`}
               />
             ))
           : null}

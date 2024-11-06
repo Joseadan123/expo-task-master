@@ -9,6 +9,7 @@ export default function TabTwoScreen() {
   const { user, logout } = useUser();
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Ajustes</Text>
       {/* Aquí podrías agregar otros componentes */}
       <View style={styles.iconContainer}>
         <Ionicons
@@ -18,9 +19,13 @@ export default function TabTwoScreen() {
           style={styles.icon}
         />
       </View>
-      <View style={styles.circleContainer}>
-        <ChangeAvatar image={user?.photoURL as string} />
-        <Text style={styles.nameUser}>Rogelio</Text>
+      <View>
+        <TouchableOpacity>
+          <View style={styles.circleContainer}>
+            <ChangeAvatar image={user?.photoURL as string} />
+            <Text style={styles.nameUser}>Rogelio</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         onPress={() => {
@@ -35,9 +40,14 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
   container: {
     flex: 1,
     padding: 16,
+    marginTop: 30,
   },
   icon: {
     marginBottom: 20,
@@ -62,25 +72,25 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   circleContainer: {
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "row",
     position: "relative",
     gap: 16,
   },
   circle: {
-    width: 100, // Ancho del círculo
-    height: 100, // Alto del círculo
+    width: 70, // Ancho del círculo
+    height: 70, // Alto del círculo
     borderRadius: 50, // Radio del borde para hacer el círculo
     backgroundColor: "blue", // Color del círculo
   },
   imageUser: {
-    width: 100, // Ancho del círculo
-    height: 100, // Alto del círculo
+    width: 70, // Ancho del círculo
+    height: 70, // Alto del círculo
     borderRadius: 50, // Radio del borde para hacer el círculo
   },
   nameUser: {
-    fontSize: 28,
+    fontSize: 23,
     fontWeight: "bold",
   },
   iconCircle: {},

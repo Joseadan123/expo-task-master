@@ -70,3 +70,19 @@ export const joinTeam = async (uid:string,teamId:string) => {
     updateDoc(teamDoc,data as unknown as AddPrefixToKeys<string, any>)
     return {err:false,message:"Te has unido al equipo."}
 }
+
+export const getAllUsersTeam = async (teamId:string) => {
+    const teams = await getDocs(docReference)
+    const team = teams.docs.find((doc)=>{
+        const t = doc.data() as Team
+        return t.code === teamId
+    })
+    if(!team){
+        return {err:true,message:"El equipo no existe."}
+    }
+    const data = team.data() as Team
+    const users = await Promise.all(data.partners.map(async (uid)=>{
+        return await getUserById(uid)
+    }))
+    return {err:false,users}
+}
